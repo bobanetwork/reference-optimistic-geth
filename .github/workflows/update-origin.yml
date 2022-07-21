@@ -1,0 +1,19 @@
+name: Update from origin
+on: 
+  push: 
+    branches: devel # only create PR on pushes to main branch
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: tgymnich/fork-sync@v1.4
+        with:
+          owner: ethereum-optimism
+          base: optimism-prototype
+          head: optimism-prototype
+          merge_method: merge
+          pr_message: Sync fork with original repository
+          pr_title: Update from origin
+          token: ${{ secrets.CI_TOKEN }}
+          ignore_fail: true # to just have a PR
